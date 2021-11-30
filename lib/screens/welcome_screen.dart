@@ -3,26 +3,32 @@ import 'package:flashchat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static String id='welcome_screen';
+  static String id = 'welcome_screen';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController? controller;
+
   @override
   void initState() {
-    controller=AnimationController(duration: Duration(seconds: 2),vsync: this);
+    controller =
+        AnimationController(duration: Duration(seconds: 2), vsync: this,upperBound: 100);
     super.initState();
     controller!.forward();
-    controller!.addListener(() {setState(() {
-
-    });print(controller!.value); });
+    controller!.addListener(() {
+      setState(() {});
+      print(controller!.value);
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.withOpacity(controller!.value),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -31,14 +37,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
           children: <Widget>[
             Row(
               children: <Widget>[
-                Hero(tag: 'flash',
+                Hero(
+                  tag: 'flash',
                   child: Container(
                     child: Image.asset('images/flash.png'),
                     height: 60.0,
                   ),
                 ),
                 Text(
-                  'Flash Chat',
+                  '${controller!.value.toInt()}%',
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
@@ -57,7 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                   Navigator.pushNamed(context, LoginScreen.id);
+                    Navigator.pushNamed(context, LoginScreen.id);
                   },
                   minWidth: 200.0,
                   height: 42.0,
@@ -75,7 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                   Navigator.pushNamed(context, RegistrationScreen.id);
+                    Navigator.pushNamed(context, RegistrationScreen.id);
                   },
                   minWidth: 200.0,
                   height: 42.0,
