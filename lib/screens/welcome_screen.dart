@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   void initState() {
     controller =
-        AnimationController(duration: Duration(seconds: 2), vsync: this,);
+        AnimationController(duration: Duration(seconds: 1), vsync: this,);
     super.initState();
     animation = CurvedAnimation(parent: controller!, curve: Curves.easeIn);
     controller!.forward();
@@ -33,7 +33,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       print(animation!.value);
     });
   }
-
+@override
+  void dispose() {
+    controller!.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
