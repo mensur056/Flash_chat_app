@@ -2,6 +2,7 @@ import 'package:flashchat/screens/login_screen.dart';
 import 'package:flashchat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
 
@@ -16,10 +17,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   void initState() {
-    controller =
-        AnimationController(duration: Duration(seconds: 1), vsync: this,);
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
     super.initState();
-    animation = ColorTween(begin: Colors.red,end: Colors.blue).animate(controller!);
+    animation =
+        ColorTween(begin: Colors.red, end: Colors.blue).animate(controller!);
     controller!.forward();
 
     controller!.addListener(() {
@@ -27,15 +31,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       print(animation!.value);
     });
   }
-@override
+
+  @override
   void dispose() {
     controller!.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:animation!.value,
+      backgroundColor: animation!.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -47,12 +53,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Hero(
                   tag: 'flash',
                   child: Container(
-                    child: Image.asset('images/flash.png'),
-                    height:60.0
-                  ),
+                      child: Image.asset('images/flash.png'), height: 60.0),
                 ),
-                TyperAnimatedTextKit(text:
-                  ['Flash Chat'],
+                TyperAnimatedTextKit(
+                  text: ['Flash Chat'],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
@@ -63,25 +67,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            RoundedButton(),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
+            RoundedButton(
+              title: 'Log In',
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              colour: Colors.lightBlueAccent,
             ),
+            RoundedButton(
+              colour: Colors.lightBlueAccent,
+              title: 'Registration',
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+            )
           ],
         ),
       ),
@@ -90,7 +89,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 }
 
 class RoundedButton extends StatelessWidget {
+  final Color colour;
+  final String title;
+  final VoidCallback onPressed;
 
+  const RoundedButton(
+      {required this.colour, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +102,14 @@ class RoundedButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
-        color: Colors.lightBlueAccent,
+        color: colour,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
-          onPressed: () {
-            Navigator.pushNamed(context, LoginScreen.id);
-          },
+          onPressed: onPressed,
           minWidth: 200.0,
           height: 42.0,
           child: Text(
-            'Log In',
+            title,
           ),
         ),
       ),
