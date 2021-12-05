@@ -1,8 +1,10 @@
+import 'package:flashchat/components/Rounded_button.dart';
 import 'package:flashchat/constants.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  static String id='registration_screen';
+  static String id = 'registration_screen';
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -21,7 +23,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Hero(tag: 'flash',
+            Hero(
+              tag: 'flash',
               child: Container(
                 height: 200.0,
                 child: Image.asset('images/flash.png'),
@@ -31,42 +34,30 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
-              onChanged: (value) {
-              email=value;
-              },
-              decoration:kTextFieldDecoration.copyWith(hintText: 'Enter your email')
-            ),
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your email')),
             SizedBox(
               height: 8.0,
             ),
             TextField(
-              onChanged: (value) {
-                password=value;
-              },
-              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password')
-            ),
+                onChanged: (value) {
+                  password = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your password')),
             SizedBox(
               height: 24.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Implement registration functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
+            RoundedButton(
+                colour: Colors.blueAccent,
+                title: 'Register',
+                onPressed: () {
+                  print(email);
+                  print(password);
+                })
           ],
         ),
       ),
