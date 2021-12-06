@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 8.0,
             ),
-            TextField(textAlign: TextAlign.center,
+            TextField(textAlign: TextAlign.center,obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.
               },
