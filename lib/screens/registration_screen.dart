@@ -33,7 +33,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextField(
+            TextField(textAlign: TextAlign.center,
                 onChanged: (value) {
                   email = value;
                 },
@@ -42,7 +42,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 8.0,
             ),
-            TextField(
+            TextField(textAlign: TextAlign.center,
                 onChanged: (value) {
                   password = value;
                 },
